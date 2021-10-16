@@ -58,5 +58,5 @@ namespace WishList
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "WishList V1");
             });
         }
-    }
+    } 
 }
