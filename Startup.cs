@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WishList.Data;
 
 namespace WishList
 {
@@ -22,6 +24,8 @@ namespace WishList
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WishContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 
             services.AddSwaggerGen();
@@ -49,7 +53,7 @@ namespace WishList
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Wishes}/{action=Index}/{id?}");
             });
 
             app.UseSwagger();

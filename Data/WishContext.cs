@@ -12,13 +12,9 @@ namespace WishList.Data
     {
         public DbSet<Wish> Wishes { get; set; }
 
-        public WishContext()
+        public WishContext(DbContextOptions<WishContext> options) : base(options)
         {
             Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=wishlistdb;Trusted_Connection=True;"); 
         }
     }
 }
