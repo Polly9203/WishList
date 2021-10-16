@@ -13,19 +13,16 @@ namespace WishList.Controllers
     public class WishesController : Controller
     {
         private readonly WishContext _context;
-
         public WishesController(WishContext context)
         {
             _context = context;
         }
 
-        // GET: Wishes
         public async Task<IActionResult> Index()
         {
             return View(await _context.Wishes.ToListAsync());
         }
 
-        // GET: Wishes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,17 +40,12 @@ namespace WishList.Controllers
             return View(wish);
         }
 
-        // GET: Wishes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Wishes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,Link")] Wish wish)
         {
             if (ModelState.IsValid)
@@ -65,7 +57,6 @@ namespace WishList.Controllers
             return View(wish);
         }
 
-        // GET: Wishes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +72,6 @@ namespace WishList.Controllers
             return View(wish);
         }
 
-        // POST: Wishes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Link")] Wish wish)
@@ -116,7 +104,6 @@ namespace WishList.Controllers
             return View(wish);
         }
 
-        // GET: Wishes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +121,6 @@ namespace WishList.Controllers
             return View(wish);
         }
 
-        // POST: Wishes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
