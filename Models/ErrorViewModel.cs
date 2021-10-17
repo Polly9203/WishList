@@ -1,5 +1,3 @@
-using System;
-
 namespace WishList.Models
 {
     public class ErrorViewModel
